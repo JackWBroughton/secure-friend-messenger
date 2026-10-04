@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Private Friend Messenger</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <div class="brand-mark">🔒</div>
+          <div>
+            <h1>Private Chat</h1>
+            <p>End-to-end encrypted</p>
+          </div>
+        </div>
+
+        <section class="profile-card">
+          <label for="nameInput">Your name</label>
+          <input id="nameInput" type="text" maxlength="18" placeholder="My friend name" />
+          <button id="saveProfileBtn" class="secondary-btn">Save profile</button>
+        </section>
+
+        <section class="profile-card code-card">
+          <span class="tiny-label">Your friend code</span>
+          <div class="code-display-wrapper">
+            <div id="friendCode" class="friend-code">- - - - - -</div>
+            <button id="copyCodeBtn" class="copy-btn" type="button" title="Copy code">📋</button>
+          </div>
+          <button id="generateCodeBtn" class="primary-btn">Generate new code</button>
+          <button id="copyInviteLinkBtn" class="primary-btn invite-btn" type="button">Copy invite link</button>
+        </section>
+
+        <section class="profile-card connect-card">
+          <span class="tiny-label">Connect to a friend</span>
+          <form id="connectForm">
+            <input id="friendCodeInput" type="text" maxlength="6" placeholder="Enter code" />
+            <button type="submit" class="primary-btn">Connect</button>
+          </form>
+        </section>
+
+        <section class="profile-card contact-card">
+          <div class="section-head">
+            <span class="tiny-label">Friends</span>
+          </div>
+          <ul id="contactList" class="contact-list"></ul>
+        </section>
+      </aside>
+
+      <main class="chat-panel">
+        <header class="chat-header">
+          <div>
+            <p class="chat-status-label">Secure session</p>
+            <h2 id="chatName">No friend connected</h2>
+          </div>
+          <span id="connectionBadge" class="status-badge offline">Offline</span>
+        </header>
+
+        <div id="messageList" class="message-list" aria-live="polite"></div>
+
+        <form id="messageForm" class="message-form">
+          <input id="messageInput" type="text" maxlength="500" placeholder="Type a message..." autocomplete="off" />
+          <button type="submit" class="primary-btn">Send</button>
+        </form>
+      </main>
+    </div>
+
+    <div id="copyNotification" class="copy-notification">Copied!</div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
