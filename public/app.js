@@ -80,13 +80,15 @@ async function copyTextToClipboard(text) {
 
 function getInviteLink() {
   const url = new URL(window.location.href);
-  url.searchParams.set('friend', state.myCode);
+  url.search = '';
+  url.hash = state.myCode || '';
   return url.toString();
 }
 
 function readInviteFromUrl() {
+  const hashCode = window.location.hash ? window.location.hash.replace(/^#/, '') : '';
   const params = new URLSearchParams(window.location.search);
-  const friendCode = params.get('friend');
+  const friendCode = hashCode || params.get('c') || params.get('friend');
   if (!friendCode) return;
   const normalized = friendCode.trim();
   if (normalized.length === 6) {
